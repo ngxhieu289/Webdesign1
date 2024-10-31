@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ</title>
+    <style>
+        /* Thiết lập cơ bản */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+        .logo {
+            width: 80px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #4b6cff;
+            margin-left: 15px;
+            transition: opacity 0.3s ease;
+        }
+        /* Cấu trúc chính */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 80%;
+            margin-top: 100px; /* Để không bị chồng với header */
+        }
+        .member-card {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background-size: 200% 200%;
+            animation: gradientAnimation 5s ease infinite;
+            border: 2px solid transparent;
+        }
+        .member-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #8a2be2, #4b6cff);
+        }
+        .member-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        .member-card:hover .member-img {
+            transform: scale(1.1);
+        }
+        .member-info {
+            margin-left: 20px;
+            text-align: left;
+        }
+        .member-info h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        /* Trang chi tiết thành viên */
+        .member-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+        .member-details img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .member-details h1 {
+            font-size: 28px;
+            color: #4b6cff;
+            margin-bottom: 10px;
+        }
+        .member-details p {
+            font-size: 16px;
+            color: #333;
+            margin: 5px 0;
+        }
+        .back-button {
+            margin-top: 20px;
+            color: #4b6cff;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #4b6cff;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #4b6cff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo và tiêu đề -->
+    <div class="header">
+        <img src="https://cdn.haitrieu.com/wp-content/uploads/2021/11/Logo-DH-Thu-Do-Ha-Noi-HNMU.png" alt="Logo Trường Đại học Thủ Đô Hà Nội" class="logo">
+        <div class="title">TRƯỜNG ĐẠI HỌC THỦ ĐÔ HÀ NỘI</div>
+    </div>
+
+    <div class="container">
+        <div class="member-card" onclick="openMemberPage('member1')">
+            <img src="member1.jpg" alt="Ảnh thành viên 1" class="member-img">
+            <div class="member-info">
+                <h2>Bùi Thanh Tùng</h2>
+            </div>
+        </div>
+        <div class="member-card" onclick="openMemberPage('member2')">
+            <img src="hieu.jpg" alt="Ảnh thành viên 2" class="member-img">
+            <div class="member-info">
+                <h2>Nguyễn Xuân Hiếu</h2>
+            </div>
+        </div>
+        <div class="member-card" onclick="openMemberPage('member3')">
+            <img src="thang.jpg" alt="Ảnh thành viên 3" class="member-img">
+            <div class="member-info">
+                <h2>Phùng Viết Thắng</h2>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openMemberPage(member) {
+            const info = {
+                member1: {
+                    name: 'Bùi Thanh Tùng',
+                    dob: '07/05/2005',
+                    studentId: 'SV001',
+                    hometown: 'Ba Đình, Hà Nội',
+                    hobbies: 'Đọc sách, chơi bóng đá',
+                    goals: 'Trở thành lập trình viên chuyên nghiệp',
+                    img: 'member1.jpg'
+                },
+                member2: {
+                    name: 'Nguyễn Xuân Hiếu',
+                    dob: '28/09/2005',
+                    studentId: '223001727',
+                    hometown: 'Thanh Trì, Hà Nội',
+                    hobbies: 'Du lịch, chơi thể thao',
+                    goals: 'Phát triển kỹ năng AI và ML',
+                    img: 'hieu.jpg'
+                },
+                member3: {
+                    name: 'Phùng Viết Thắng',
+                    dob: '05/07/2005',
+                    studentId: '223001792',
+                    hometown: 'Hạ Long, Quảng Ninh',
+                    hobbies: 'Chơi game, xem phim',
+                    goals: 'Trở thành shipper số 1 Việt Nam',
+                    img: 'thang.jpg'
+                }
+            };
+            const memberInfo = info[member];
+            if (memberInfo) {
+                document.body.innerHTML = `
+                    <div class="member-details">
+                        <img src="${memberInfo.img}" alt="${memberInfo.name}">
+                        <h1>${memberInfo.name}</h1>
+                        <p><strong>Ngày sinh:</strong> ${memberInfo.dob}</p>
+                        <p><strong>Mã sinh viên:</strong> ${memberInfo.studentId}</p>
+                        <p><strong>Quê quán:</strong> ${memberInfo.hometown}</p>
+                        <p><strong>Sở thích:</strong> ${memberInfo.hobbies}</p>
+                        <p><strong>Mục tiêu:</strong> ${memberInfo.goals}</p>
+                        <a href="#" onclick="location.reload();" class="back-button">Quay lại trang chính</a>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
